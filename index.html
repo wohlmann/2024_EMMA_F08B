@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <style>
+        html, body {
+            height: 98%;
+            width: 100%;
+            margin: 2px;
+            background: #000000;
+        }
+        #viewer {
+            width: 95%;
+            height: 90%;
+            margin: auto;
+            border: 1px solid #696969;
+        }
+    </style>
+  </head>
+  <body bgcolor=#000000>
+  	<div style="display: flex; justify-content: center; margin:auto; border-bottom:5px; border-style:solid; border-color:#000000">
+	<a href="https://www.mn.uio.no/ibv/english/research/about/infrastructure/facilities/life-science/imaging/em/index.html" target="_blank"><img src="Assets/Logo/logosmall.png" alt="logo" /></a></div>
+    <div id="viewer"></div>
+    <script src="openseadragon/openseadragon.js"></script>
+	<script src="openseadragon/openseadragon-scalebar.js"></script>
+	<script src="openseadragon-annotations105/dist/openseadragon-annotations.js"></script>
+    <script>
+		const viewer = OpenSeadragon({
+			id:            'viewer',
+			prefixUrl:     'openseadragon/images/',
+			tileSources: [{
+				type:       "zoomifytileservice",
+				width:      32343,
+				height:     14888,
+				tilesUrl:   "2018008_029_2018008B_H4_ser1_col_2/",
+				tileSize: 256,
+				fileFormat: 'jpg'	
+			}],
+			showNavigator: true,
+			navigatorPosition: "ABSOLUTE",
+			navigatorTop:      "10px",
+			navigatorLeft:     "20px",
+			navigatorHeight:   "45%",
+			navigatorWidth:    "45%",
+			navigatorAutoFade:  true,
+			wrapHorizontal: false,
+			wrapVertical: false,
+			zoomPerScroll: 1.2,
+			minZoomImageRatio: 0.5,
+			showNavigationControl: false
+		});
+		viewer.scalebar({
+			type: OpenSeadragon.ScalebarType.MICROSCOPY,
+			pixelsPerMeter: 223495200,
+			minWidth: "200px",
+			location: OpenSeadragon.ScalebarLocation.BOTTOM_RIGHT,
+			xOffset: 20,
+			yOffset: 10,
+			stayInsideImage: true,
+			color: "rgb(0, 0, 0)",
+			fontColor: "rgb(0, 0, 0)",
+			backgroundColor: "rgba(200, 200, 200, 0.0)",
+			fontSize: "large",
+			barThickness: 4,
+		});
+		viewer.initializeAnnotations();
+    </script>
+  </body>
+</html>
